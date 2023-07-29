@@ -20,4 +20,7 @@ def jwt_encode_in_file(name: str, passw: str) -> str:
     return str(encoded_jwt)
 
 def jwt_decode(token: str) -> str:
-    return jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+    try:
+        return jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
+    except exception as err:
+        return "Hmm, i cant decode your token, maybe its not valid?"
